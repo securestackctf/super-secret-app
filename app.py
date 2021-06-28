@@ -15,7 +15,7 @@ def authenticate(super_secret):
     )['Parameter']['Value']
 
     if super_secret == "":
-        return 'You need to authenticate'
+        return current_app.send_static_file('auth.html')
     elif super_secret == apikey:
         return redirect('https://ctf.niftybank.org/%s/flag' % apikey, 301)
 
