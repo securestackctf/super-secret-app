@@ -17,7 +17,7 @@ def authenticate(super_secret):
     if super_secret == "":
         return current_app.send_static_file('auth.html')
     elif super_secret == apikey:
-        return redirect('https://ctf.niftybank.org/%s/flag' % apikey, 301)
+        return redirect('https://secureflag.niftybank.org/flag/%s' % apikey, 301)
 
 
 @app.route('/')
