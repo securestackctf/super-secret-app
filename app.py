@@ -1,10 +1,19 @@
+import os
+
+import boto3
 from flask import Flask, request, current_app, redirect
 app = Flask(__name__)
 
 
 @app.route('/<super_secret>')
 def authenticate(super_secret):
-    apikey = "securestackssecurectf2021AABBBEHUEHHDHJDIJIKJIAHSUBUCIEGBPJQHNAJS"
+    ssm = boto3.client('ssm', os.environ['AWS_REGION'])
+
+    apikey = ssm.get_parameter(
+        Name='/supersecretapp/password',
+        WithDecryption=True
+    )['Parameter']['Value']
+
     if super_secret == "":
         return 'You need to authenticate'
     elif super_secret == apikey:

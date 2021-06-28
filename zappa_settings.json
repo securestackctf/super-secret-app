@@ -1,0 +1,19 @@
+{
+    "dev": {
+        "app_function": "app.app",
+        "profile_name": "orwell",
+        "project_name": "super-secret-ap",
+        "runtime": "python3.8",
+        "s3_bucket": "securestack-ctf-2021",
+        "extra_permissions": [{
+            "Effect": "Allow",
+            "Action": [
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+                "ssm:GetParametersByPath",
+                "ssm:DescribeParameters"
+            ],
+            "Resource": "*"
+        }]
+    }
+}
